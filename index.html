@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>전생 재물운 금고 | 띠별 맞춤 재물운 아이템</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0C96B;
+    --gold-dark: #8B6914;
+    --black: #0A0A0A;
+    --dark2: #1A1A1A;
+    --dark3: #222222;
+    --text: #E8DCC8;
+    --text-dim: #9A8A6A;
+    --naver: #03C75A;
+    --naver-dark: #02A64A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    overflow-x: hidden;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 480px; height: 100%;
+    background:
+      radial-gradient(ellipse at 30% 10%, rgba(201,168,76,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 90%, rgba(3,199,90,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── 헤더 ── */
+  .header {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 48px 20px 36px;
+    background: linear-gradient(180deg, rgba(201,168,76,0.06) 0%, transparent 100%);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    animation: fadeDown 0.7s ease both;
+  }
+
+  .header-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(24px, 7vw, 38px);
+    font-weight: 900;
+    line-height: 1.35;
+    margin-bottom: 14px;
+    animation: fadeDown 0.7s 0.1s ease both;
+  }
+
+  .header-title em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    animation: fadeDown 0.7s 0.2s ease both;
+  }
+
+  /* ── 안내 배너 ── */
+  .notice-bar {
+    position: relative;
+    z-index: 1;
+    background: rgba(3,199,90,0.06);
+    border-top: 1px solid rgba(3,199,90,0.15);
+    border-bottom: 1px solid rgba(3,199,90,0.15);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .notice-bar span { color: var(--naver); font-weight: 600; }
+
+  /* ── 섹션 공통 ── */
+  .section {
+    position: relative;
+    z-index: 1;
+    padding: 32px 16px;
+  }
+
+  .section-head {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 10px auto 0;
+  }
+
+  /* ── 띠 그리드 ── */
+  .zodiac-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .zodiac-btn {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 12px;
+    padding: 12px 6px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.25s ease;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .zodiac-btn:nth-child(1){animation-delay:0.05s}
+  .zodiac-btn:nth-child(2){animation-delay:0.1s}
+  .zodiac-btn:nth-child(3){animation-delay:0.15s}
+  .zodiac-btn:nth-child(4){animation-delay:0.2s}
+  .zodiac-btn:nth-child(5){animation-delay:0.25s}
+  .zodiac-btn:nth-child(6){animation-delay:0.3s}
+  .zodiac-btn:nth-child(7){animation-delay:0.35s}
+  .zodiac-btn:nth-child(8){animation-delay:0.4s}
+  .zodiac-btn:nth-child(9){animation-delay:0.45s}
+  .zodiac-btn:nth-child(10){animation-delay:0.5s}
+  .zodiac-btn:nth-child(11){animation-delay:0.55s}
+  .zodiac-btn:nth-child(12){animation-delay:0.6s}
+
+  .zodiac-btn:active {
+    background: var(--dark3);
+    border-color: var(--gold);
+    transform: scale(0.96);
+  }
+
+  .zodiac-emoji { font-size: 26px; line-height: 1; }
+  .zodiac-name { font-size: 11px; color: var(--text-dim); font-weight: 500; }
+
+ /* ── 기획전 배너 ── */
+.banner-section {
+  position: relative;
+  z-index: 1;
+  padding: 32px 16px;
+  background: var(--dark2);
+  border-top: 1px solid rgba(201,168,76,0.1);
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+}
+
+.banner-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.banner-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.banner-item:active {
+  transform: scale(0.96);
+}
+
+.banner-item img {
+  width: 100%;
+  height: 150px;
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.banner-name {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-align: center;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+  /* ── 상품 섹션 ── */
+  .products-section {
+    position: relative;
+    z-index: 1;
+    padding: 32px 16px;
+  }
+
+  .product-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 14px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+
+  .product-item:active {
+    border-color: var(--naver);
+    transform: scale(0.99);
+  }
+
+.product-thumb {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .product-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .product-body { flex: 1; min-width: 0; }
+
+  .product-tag {
+    font-size: 10px;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+  }
+
+  .product-name {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .product-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+
+  .product-cta {
+    flex-shrink: 0;
+    background: var(--naver);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ── 구매 중 뱃지 ── */
+  .product-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(192,57,43,0.12);
+    border: 1px solid rgba(192,57,43,0.3);
+    color: #E74C3C;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 20px;
+    margin-top: 4px;
+    animation: blink 2s infinite;
+  }
+
+  .product-badge::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: #E74C3C;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .naver-notice {
+    text-align: center;
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 14px;
+    line-height: 1.6;
+    padding: 10px;
+    background: rgba(3,199,90,0.04);
+    border: 1px solid rgba(3,199,90,0.1);
+    border-radius: 8px;
+  }
+
+  .naver-notice a { color: var(--naver); text-decoration: underline; }
+
+  /* ── 유튜브 CTA ── */
+  .yt-section {
+    position: relative;
+    z-index: 1;
+    padding: 32px 16px;
+    text-align: center;
+    background: var(--dark2);
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .yt-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: #FF0000;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 18px 24px;
+    border-radius: 14px;
+    text-decoration: none;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 20px rgba(255,0,0,0.25);
+    transition: all 0.25s ease;
+  }
+
+  .yt-btn:active { transform: scale(0.98); }
+
+  .yt-note {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* ── 후기 ── */
+  .reviews-section {
+    position: relative;
+    z-index: 1;
+    padding: 32px 16px;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .review-card {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 10px;
+  }
+
+  .review-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .review-av {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--black);
+    flex-shrink: 0;
+  }
+
+  .review-meta { flex: 1; }
+  .review-nick { font-size: 12px; font-weight: 500; }
+  .review-stars { font-size: 11px; color: var(--gold); }
+
+  .review-badge {
+    font-size: 10px;
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+
+  .review-text {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* ── 푸터 ── */
+  .footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 24px 20px 100px;
+    border-top: 1px solid rgba(201,168,76,0.08);
+  }
+
+  .footer-logo {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .footer-text {
+    font-size: 10px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* ── 플로팅 버튼 ── */
+  .float-wrap {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    padding: 12px 16px;
+    background: linear-gradient(180deg, transparent 0%, rgba(10,10,10,0.97) 30%);
+    z-index: 100;
+  }
+
+  .float-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: var(--naver);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px 24px;
+    border-radius: 14px;
+    text-decoration: none;
+    box-shadow: 0 4px 24px rgba(3,199,90,0.35);
+    animation: pulse 2.5s infinite;
+  }
+
+  /* ── 애니메이션 ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 24px rgba(3,199,90,0.35); }
+    50% { box-shadow: 0 4px 36px rgba(3,199,90,0.6); }
+  }
+</style>
+</head>
+<body>
+
+<!-- 헤더 -->
+<header class="header">
+  <div class="header-badge">✦ 전생 재물운 금고 ✦</div>
+  <h1 class="header-title">
+    당신의 <em>전생이</em><br>재물운을 말합니다
+  </h1>
+  <p class="header-sub">
+    전생의 기질이 지금 금전 흐름을 만들고 있습니다<br>
+    띠를 선택하고 재물운의 해답을 찾아보세요
+  </p>
+</header>
+
+<!-- 안내 배너 -->
+<div class="notice-bar">
+  🛒 <span>재물운 아이템</span>은 네이버 쇼핑 파트너 링크로 연결됩니다
+</div>
+
+<!-- 띠 선택 -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-label">ZODIAC SIGN</div>
+    <div class="section-title">당신의 띠를 선택하세요</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="zodiac-grid">
+    <a href="YOUR_YOUTUBE_쥐띠" class="zodiac-btn">
+      <span class="zodiac-emoji">🐭</span>
+      <span class="zodiac-name">쥐띠</span>
+    </a>
+    <a href="YOUR_YOUTUBE_소띠" class="zodiac-btn">
+      <span class="zodiac-emoji">🐮</span>
+      <span class="zodiac-name">소띠</span>
+    </a>
+    <a href="YOUR_YOUTUBE_호랑이띠" class="zodiac-btn">
+      <span class="zodiac-emoji">🐯</span>
+      <span class="zodiac-name">호랑이띠</span>
+    </a>
+    <a href="YOUR_YOUTUBE_토끼띠" class="zodiac-btn">
+      <span class="zodiac-emoji">🐰</span>
+      <span class="zodiac-name">토끼띠</span>
+    </a>
+    <a href="YOUR_YOUTUBE_용띠" class="zodiac-btn">
+      <span class="zodiac-emoji">🐲</span>
+      <span class="zodiac-name">용띠</span>
+    </a>
+    <a href="YOUR_YOUTUBE_뱀띠" class="zodiac-btn">
+      <span class="zodiac-emoji">🐍</span>
+      <span class="zodiac-name">뱀띠</span>
+    </a>
+    <a href="YOUR_YOUTUBE_말띠" class="zodiac-btn">
+      <span class="zodiac-emoji">🐴</span>
+      <span class="zodiac-name">말띠</span>
+    </a>
+    <a href="YOUR_YOUTUBE_양띠" class="zodiac-btn">
+      <span class="zodiac-emoji">🐑</span>
+      <span class="zodiac-name">양띠</span>
+    </a>
+    <a href="YOUR_YOUTUBE_원숭이띠" class="zodiac-btn">
+      <span class="zodiac-emoji">🐵</span>
+      <span class="zodiac-name">원숭이띠</span>
+    </a>
+    <a href="YOUR_YOUTUBE_닭띠" class="zodiac-btn">
+      <span class="zodiac-emoji">🐔</span>
+      <span class="zodiac-name">닭띠</span>
+    </a>
+    <a href="YOUR_YOUTUBE_개띠" class="zodiac-btn">
+      <span class="zodiac-emoji">🐶</span>
+      <span class="zodiac-name">개띠</span>
+    </a>
+    <a href="YOUR_YOUTUBE_돼지띠" class="zodiac-btn">
+      <span class="zodiac-emoji">🐷</span>
+      <span class="zodiac-name">돼지띠</span>
+    </a>
+  </div>
+</section>
+
+<!-- 기획전 배너 -->
+<section class="banner-section">
+  <div class="section-head">
+    <div class="section-label">전생 금고</div>
+    <div class="section-title">3월 한정 최저가!</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="banner-grid">
+    <a href="https://naver.me/FLEMeXxV" class="banner-item" target="_blank" rel="noopener">
+      <img src="https://i.imgur.com/kyabt1I.jpg" alt="">
+      <span class="banner-name">식약처 인증 기미 미백 크림</span>
+    </a>
+
+    <a href="https://naver.me/xy79dkUG" class="banner-item" target="_blank" rel="noopener">
+      <img src="https://i.imgur.com/sS8wBXd.jpg" alt="">
+      <span class="banner-name">삶의 질 향상 쫀쫀 깔창</span>
+    </a>
+
+    <a href="https://naver.me/GhSkEgLM" class="banner-item" target="_blank" rel="noopener">
+      <img src="https://i.imgur.com/8sC2EJg.jpg" alt="">
+      <span class="banner-name">고함량 발효 침향</span>
+    </a>
+  </div>
+</section>
+
+<!-- 재물운 아이템 -->
+<section class="products-section">
+  <div class="section-head">
+    <div class="section-label">NAVER SHOPPING</div>
+    <div class="section-title">띠별 재물운 맞춤 아이템</div>
+    <div class="divider"></div>
+  </div>
+
+ <a href="https://naver.me/F5aR3hsi" class="product-item" target="_blank" rel="noopener">
+  <div class="product-thumb">
+    <img src="https://i.imgur.com/Uj27ak5.jpg" alt="">
+  </div>
+  <div class="product-body">
+    <div class="product-tag">BEST · 재물운</div>
+    <div class="product-name">돈 들어오는 액자</div>
+    <div class="product-desc">거실에 두면 '돈벼락' 맞는 황금 재물</div>
+    <div class="product-badge">461명이 구매중</div>
+  </div>
+  <div class="product-cta">N 쇼핑</div>
+</a>
+
+<a href="https://naver.me/G7N3CCy5" class="product-item" target="_blank" rel="noopener">
+  <div class="product-thumb">
+    <img src="https://i.imgur.com/KTtEQJI.jpg" alt="">
+  </div>
+  <div class="product-body">
+    <div class="product-tag">인기 · 액막이</div>
+    <div class="product-name">액막이 명태</div>
+    <div class="product-desc">나쁜 운은 싹 가셔라! 액막이 명태</div>
+    <div class="product-badge">673명이 구매중</div>
+  </div>
+  <div class="product-cta">N 쇼핑</div>
+</a>
+
+ <a href="https://naver.me/5dAlQu8V" class="product-item" target="_blank" rel="noopener">
+  <div class="product-thumb">
+    <img src="https://i.imgur.com/5NgAGRT.jpg" alt="">
+  </div>
+  <div class="product-body">
+    <div class="product-tag">NEW · 띠별</div>
+    <div class="product-name">호안석 팔찌(99.9Silver)</div>
+    <div class="product-desc">내 몸에 착! 복을 붙잡는 대운 팔찌</div>
+    <div class="product-badge">129명이 구매중</div>
+  </div>
+  <div class="product-cta">N 쇼핑</div>
+</a>
+
+  <div class="naver-notice">
+    본 페이지의 상품 링크는 네이버 쇼핑 파트너 링크로,<br>
+    구매 시 일정 수수료가 발생할 수 있습니다.<br>
+    <!--<a href="YOUR_NAVER_SHOPPING_MAIN" target="_blank">네이버 쇼핑 바로가기 →</a>-->
+  </div>
+</section>
+
+<!-- 유튜브 CTA -->
+<section class="yt-section">
+  <a href="https://www.youtube.com/@AI전생금고" class="yt-btn" target="_blank">
+    ▶ 유튜브 채널 구독하기
+  </a>
+  <p class="yt-note">
+    구독과 알림 설정을 해두시면<br>
+    띠별 전생 재물운 이야기를 매일 가장 먼저 받아보실 수 있어요
+  </p>
+</section>
+
+<!-- 후기 -->
+<section class="reviews-section">
+  <div class="section-head">
+    <div class="section-label">REVIEWS</div>
+    <div class="section-title">시청자 후기</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="review-card">
+    <div class="review-top">
+      <div class="review-av">쥐</div>
+      <div class="review-meta">
+        <div class="review-nick">k****2</div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <span class="review-badge">쥐띠</span>
+    </div>
+    <div class="review-text">소름 돋았어요. 왜 돈이 모이지 않는지 처음으로 납득했습니다. 영상 보고 바로 지출 패턴 바꿨더니 이번 달 처음으로 여유가 생겼어요.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="review-top">
+      <div class="review-av">말</div>
+      <div class="review-meta">
+        <div class="review-nick">j****8</div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <span class="review-badge">말띠</span>
+    </div>
+    <div class="review-text">전생 이야기가 제 현재 상황이랑 너무 딱 맞아서 깜짝 놀랐어요. 처방대로 해봤더니 진짜 돈이 덜 새는 느낌이에요.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="review-top">
+      <div class="review-av">닭</div>
+      <div class="review-meta">
+        <div class="review-nick">p****5</div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <span class="review-badge">닭띠</span>
+    </div>
+    <div class="review-text">재미로 봤는데 내용이 너무 구체적이라 놀랐어요. 베푸는 걸 좋아하는데 정작 내 몫이 없다는 말이 정확했어요.</div>
+  </div>
+</section>
+
+<!-- 푸터 -->
+<footer class="footer">
+  <div class="footer-logo">전생 재물운 금고</div>
+  <div class="footer-text">
+    띠별 전생과 재물운의 연결고리를 풀어드리는 채널입니다<br>
+    본 콘텐츠는 엔터테인먼트 목적으로 제작되었습니다<br><br>
+    © 2026 전생 재물운 금고. All rights reserved.
+  </div>
+</footer>
+
+<!-- 플로팅 CTA -->
+<div class="float-wrap">
+  <a href="#" class="float-cta" target="_blank">
+    💰 오늘의 재물운 아이템 보기
+  </a>
+</div>
+
+<script>
+  const links = [
+    "https://naver.me/F5aR3hsi",
+    "https://naver.me/G7N3CCy5",
+    "https://naver.me/5dAlQu8V"
+  ];
+  const random = links[Math.floor(Math.random() * links.length)];
+  document.querySelector(".float-cta").href = random;
+</script>
+
+</body>
+</html>
