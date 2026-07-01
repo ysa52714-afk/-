@@ -525,36 +525,32 @@
 
 
 
+
 /* JEON_STYLE_START */
-  .pick-badge { display:inline-block; margin-bottom:5px; background:linear-gradient(90deg,var(--gold),var(--gold-dark)); color:#1a1533; font-size:10.5px; font-weight:800; letter-spacing:.3px; padding:2px 8px; border-radius:6px; }
-  .product-name { font-size:15px !important; font-weight:700; }
-  .product-desc { font-size:12.5px !important; }
-  .pb { margin-top:9px; }
-  .pb-top { display:flex; align-items:center; gap:7px; white-space:nowrap; margin-bottom:1px; }
-  .pb-was { color:var(--text-dim); font-size:12px; text-decoration:line-through; }
-  .pb-rate { color:#1a1533; background:var(--gold); font-weight:800; font-size:11px; padding:1px 6px; border-radius:5px; }
-  .pb-now { color:var(--gold-light); font-weight:800; font-size:24px; line-height:1.1; white-space:nowrap; }
-  .pb-trust { margin-top:7px; font-size:12px; color:var(--text); white-space:nowrap; }
-  .pb-trust b { color:var(--gold-light); font-weight:700; }
-  .pb-sub { margin-top:2px; font-size:10.5px; color:var(--text-dim); white-space:nowrap; }
-  /* 캔바 히어로 배너 */
-  .hero-banner { margin:0; line-height:0; }
-  .hero-banner img { width:100%; display:block; }
-  /* 가독성 확대(운세 타겟 40~60대) */
+  /* 2열 세로형 상품 카드 (이미지 위 · 내용 센터) */
+  .products-grid { display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+  .product-item { flex-direction:column !important; align-items:stretch !important; padding:0 !important; gap:0 !important; margin:0 !important; overflow:hidden; background:var(--dark3); border:1px solid rgba(201,168,76,0.18); border-radius:14px; position:relative; }
+  .product-item.hot { border-color:rgba(201,168,76,0.5); }
+  .product-thumb { width:100% !important; height:132px !important; border-radius:0 !important; flex-shrink:0; position:relative; background:#fff; }
+  .product-thumb img { width:100% !important; height:100% !important; object-fit:cover; border-radius:0 !important; }
+  .pick-badge { position:absolute; top:8px; left:8px; z-index:2; margin:0; background:linear-gradient(90deg,var(--gold),var(--gold-dark)); color:#1a1533; font-size:10px; font-weight:800; letter-spacing:.3px; padding:3px 8px; border-radius:6px; }
+  .product-body { flex:none !important; padding:11px 11px 10px !important; text-align:center; min-width:0 !important; }
+  .product-tag { font-size:10px !important; color:var(--gold); font-weight:700; letter-spacing:.5px; margin-bottom:4px; }
+  .product-name { font-size:13.5px !important; font-weight:700 !important; line-height:1.35; height:2.7em; margin-bottom:7px; white-space:normal !important; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+  .pb-top { display:flex; justify-content:center; align-items:center; gap:6px; white-space:nowrap; margin-bottom:1px; }
+  .pb-was { color:var(--text-dim); font-size:11px; text-decoration:line-through; }
+  .pb-rate { color:#1a1533; background:var(--gold); font-weight:800; font-size:10.5px; padding:1px 6px; border-radius:5px; }
+  .pb-now { color:var(--gold-light); font-weight:800; font-size:22px; line-height:1.15; white-space:nowrap; }
+  .pb-trust { margin-top:6px; font-size:11px; color:var(--text); white-space:nowrap; }
+  .product-badge { display:inline-block; margin-top:7px; font-size:10.5px; color:#E8B4B8; font-weight:600; }
+  .product-cta { display:block !important; background:var(--naver); color:#fff; font-weight:700; font-size:12px; text-align:center; padding:10px; letter-spacing:.3px; }
+  /* 가독성 · 여백 압축 */
   .section-title { font-size:20px !important; }
-  .product-tag { font-size:10.5px !important; }
-  .product-badge { font-size:11px !important; }
   .zodiac-name { font-size:11.5px !important; }
   .banner-name { font-size:11.5px !important; }
-  /* 상품 썸네일 확대(모바일 가독성) + 세로 중앙 정렬 */
-  .product-thumb { width:104px !important; height:104px !important; border-radius:14px !important; }
-  .product-thumb img { object-fit:cover; width:100% !important; height:100% !important; }
-  .product-item { gap:14px !important; align-items:center !important; margin-bottom:9px !important; padding:14px !important; }
-  .banner-item img { border-radius:14px; }
-  /* 여백 압축(섹션 간 공백 최소화) */
   .products-section { padding:18px 14px !important; }
   .section { padding:22px 14px !important; }
-  .section-head { margin-bottom:13px !important; }
+  .section-head { margin-bottom:14px !important; }
   /* 누적 리뷰 소셜프루프 바 */
   .proofbar { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:0 16px 8px; padding:15px 12px; background:linear-gradient(90deg, rgba(201,168,76,.13), rgba(139,105,20,.07)); border:1px solid rgba(201,168,76,.32); border-radius:12px; }
   .proofbar .pf { text-align:center; min-width:92px; }
@@ -653,78 +649,79 @@
     <div class="divider"></div>
   </div>
 
- <a href="https://naver.me/xktAkcLO" class="product-item hot" target="_blank" rel="noopener">
-  <div class="product-thumb"><img src="img/health1.jpg" alt="조선비책 침향환 초고함량 발효" loading="lazy"></div>
+  <div class="products-grid">
+<a href="https://naver.me/xktAkcLO" class="product-item hot" target="_blank" rel="noopener">
+  <div class="product-thumb"><div class="pick-badge">✦ PICK</div><img src="img/health1.jpg" alt="조선비책 침향환 초고함량 발효" loading="lazy"></div>
   <div class="product-body">
-    <div class="pick-badge">✦ 전생시그널 PICK</div>
     <div class="product-tag">BEST · 🌿</div>
     <div class="product-name">조선비책 침향환 초고함량 발효</div>
-    <div class="product-desc">지친 몸에 활력 한 스푼</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">608,000원</span><span class="pb-rate">83%↓</span></div><div class="pb-now">99,000원</div><div class="pb-trust">⭐<b>4.87</b> · 리뷰 <b>72,521</b></div><div class="pb-sub">공식스토어 · N페이 적립</div></div>
-    <div class="product-badge">383명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">608,000원</span><span class="pb-rate">83%↓</span></div><div class="pb-now">99,000원</div>
+    <div class="pb-trust">⭐4.87 · 리뷰 72,521</div>
+    <div class="product-badge">🔥 383명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/FE3nHS0j" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/FE3nHS0j" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/health2.jpg" alt="피토틱스 옐로우 여성 질 유래" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">인기 · 🌿</div>
     <div class="product-name">피토틱스 옐로우 여성 질 유래</div>
-    <div class="product-desc">기력이 재물을 부른다</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">149,400원</span><span class="pb-rate">67%↓</span></div><div class="pb-now">48,900원</div><div class="pb-trust">⭐<b>4.81</b> · 리뷰 <b>46,607</b></div><div class="pb-sub">공식스토어 · N페이 적립</div></div>
-    <div class="product-badge">341명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">149,400원</span><span class="pb-rate">67%↓</span></div><div class="pb-now">48,900원</div>
+    <div class="pb-trust">⭐4.81 · 리뷰 46,607</div>
+    <div class="product-badge">🔥 341명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/5Z1AGLWO" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/5Z1AGLWO" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/health3.jpg" alt="인테로 생유산균 프로바이오틱스" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">인기 · 🌿</div>
     <div class="product-name">인테로 생유산균 프로바이오틱스</div>
-    <div class="product-desc">리뷰가 증명하는 기력템</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">24,900원</span><span class="pb-rate">12%↓</span></div><div class="pb-now">21,800원</div><div class="pb-trust">⭐<b>4.77</b> · 리뷰 <b>38,539</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">177명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">24,900원</span><span class="pb-rate">12%↓</span></div><div class="pb-now">21,800원</div>
+    <div class="pb-trust">⭐4.77 · 리뷰 38,539</div>
+    <div class="product-badge">🔥 177명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/5XcB5aW3" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/5XcB5aW3" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/health4.jpg" alt="피토틱스 옐로우 여성 질 유래" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">NEW · 🌿</div>
     <div class="product-name">피토틱스 옐로우 여성 질 유래</div>
-    <div class="product-desc">지친 몸에 활력 한 스푼</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">49,800원</span><span class="pb-rate">61%↓</span></div><div class="pb-now">19,000원</div><div class="pb-trust">⭐<b>4.75</b> · 리뷰 <b>38,363</b></div><div class="pb-sub">공식스토어 · N페이 적립</div></div>
-    <div class="product-badge">129명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">49,800원</span><span class="pb-rate">61%↓</span></div><div class="pb-now">19,000원</div>
+    <div class="pb-trust">⭐4.75 · 리뷰 38,363</div>
+    <div class="product-badge">🔥 129명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/xPYlOMa7" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/xPYlOMa7" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/health5.jpg" alt="루테인 지아잔틴 아스타잔틴" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">NEW · 🌿</div>
     <div class="product-name">루테인 지아잔틴 아스타잔틴</div>
-    <div class="product-desc">기력이 재물을 부른다</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">200,000원</span><span class="pb-rate">56%↓</span></div><div class="pb-now">87,000원</div><div class="pb-trust">⭐<b>4.84</b> · 리뷰 <b>34,840</b></div><div class="pb-sub">공식스토어 · N페이 적립</div></div>
-    <div class="product-badge">250명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">200,000원</span><span class="pb-rate">56%↓</span></div><div class="pb-now">87,000원</div>
+    <div class="pb-trust">⭐4.84 · 리뷰 34,840</div>
+    <div class="product-badge">🔥 250명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/GjyL4Hw7" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/GjyL4Hw7" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/health6.jpg" alt="네추럴라이즈 키즈 꾸미 영양제" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">NEW · 🌿</div>
     <div class="product-name">네추럴라이즈 키즈 꾸미 영양제</div>
-    <div class="product-desc">리뷰가 증명하는 기력템</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">30,000원</span><span class="pb-rate">47%↓</span></div><div class="pb-now">15,900원</div><div class="pb-trust">⭐<b>4.81</b> · 리뷰 <b>33,372</b></div><div class="pb-sub">공식스토어 · N페이 적립</div></div>
-    <div class="product-badge">486명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">30,000원</span><span class="pb-rate">47%↓</span></div><div class="pb-now">15,900원</div>
+    <div class="pb-trust">⭐4.81 · 리뷰 33,372</div>
+    <div class="product-badge">🔥 486명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
+  </div>
 </section>
 
 <section class="products-section">
@@ -735,78 +732,79 @@
     <div class="divider"></div>
   </div>
 
- <a href="https://naver.me/xVRTsaLy" class="product-item hot" target="_blank" rel="noopener">
-  <div class="product-thumb"><img src="img/luck1.png" alt="행운 현관 액막이 명태 인형" loading="lazy"></div>
+  <div class="products-grid">
+<a href="https://naver.me/xVRTsaLy" class="product-item hot" target="_blank" rel="noopener">
+  <div class="product-thumb"><div class="pick-badge">✦ PICK</div><img src="img/luck1.png" alt="행운 현관 액막이 명태 인형" loading="lazy"></div>
   <div class="product-body">
-    <div class="pick-badge">✦ 전생시그널 PICK</div>
     <div class="product-tag">BEST · 🧿</div>
     <div class="product-name">행운 현관 액막이 명태 인형</div>
-    <div class="product-desc">몸에 지녀 액운을 막는다</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">16,800원</span><span class="pb-rate">30%↓</span></div><div class="pb-now">11,600원</div><div class="pb-trust">⭐<b>4.9</b> · 리뷰 <b>3,097</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">171명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">16,800원</span><span class="pb-rate">30%↓</span></div><div class="pb-now">11,600원</div>
+    <div class="pb-trust">⭐4.9 · 리뷰 3,097</div>
+    <div class="product-badge">🔥 171명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/G7N3CCy5" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/G7N3CCy5" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/luck2.png" alt="행운 현관 액막이 명태 북어" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">인기 · 🧿</div>
     <div class="product-name">행운 현관 액막이 명태 북어</div>
-    <div class="product-desc">복을 끌어당기는 개운템</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">18,700원</span><span class="pb-rate">33%↓</span></div><div class="pb-now">12,500원</div><div class="pb-trust">⭐<b>4.92</b> · 리뷰 <b>1,085</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">475명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">18,700원</span><span class="pb-rate">33%↓</span></div><div class="pb-now">12,500원</div>
+    <div class="pb-trust">⭐4.92 · 리뷰 1,085</div>
+    <div class="product-badge">🔥 475명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/xeF12byp" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/xeF12byp" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/luck3.jpg" alt="태르아 액막이 명태 원목 액땜" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">인기 · 🧿</div>
     <div class="product-name">태르아 액막이 명태 원목 액땜</div>
-    <div class="product-desc">현관·차에 두는 액막이</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">17,000원</span><span class="pb-rate">12%↓</span></div><div class="pb-now">14,900원</div><div class="pb-trust">⭐<b>4.91</b> · 리뷰 <b>650</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">280명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">17,000원</span><span class="pb-rate">12%↓</span></div><div class="pb-now">14,900원</div>
+    <div class="pb-trust">⭐4.91 · 리뷰 650</div>
+    <div class="product-badge">🔥 280명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/5CCox0Yx" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/5CCox0Yx" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/luck4.jpg" alt="호안석 팔찌 1+1 특5A" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">NEW · 🧿</div>
     <div class="product-name">호안석 팔찌 1+1 특5A</div>
-    <div class="product-desc">몸에 지녀 액운을 막는다</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">50,000원</span><span class="pb-rate">40%↓</span></div><div class="pb-now">29,800원</div><div class="pb-trust">⭐<b>4.81</b> · 리뷰 <b>554</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">432명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">50,000원</span><span class="pb-rate">40%↓</span></div><div class="pb-now">29,800원</div>
+    <div class="pb-trust">⭐4.81 · 리뷰 554</div>
+    <div class="product-badge">🔥 432명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/FNthESZl" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/FNthESZl" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/luck5.png" alt="액막이 명태 북어 집들이 개업" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">NEW · 🧿</div>
     <div class="product-name">액막이 명태 북어 집들이 개업</div>
-    <div class="product-desc">복을 끌어당기는 개운템</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">49,900원</span><span class="pb-rate">40%↓</span></div><div class="pb-now">29,900원</div><div class="pb-trust">⭐<b>4.94</b> · 리뷰 <b>354</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">212명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">49,900원</span><span class="pb-rate">40%↓</span></div><div class="pb-now">29,900원</div>
+    <div class="pb-trust">⭐4.94 · 리뷰 354</div>
+    <div class="product-badge">🔥 212명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/551gvlKR" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/551gvlKR" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/luck6.jpg" alt="가죽 액막이명태 액막이북어" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">NEW · 🧿</div>
     <div class="product-name">가죽 액막이명태 액막이북어</div>
-    <div class="product-desc">현관·차에 두는 액막이</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">19,000원</span><span class="pb-rate">21%↓</span></div><div class="pb-now">15,000원</div><div class="pb-trust">⭐<b>4.9</b> · 리뷰 <b>353</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">479명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">19,000원</span><span class="pb-rate">21%↓</span></div><div class="pb-now">15,000원</div>
+    <div class="pb-trust">⭐4.9 · 리뷰 353</div>
+    <div class="product-badge">🔥 479명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
+  </div>
 </section>
 
 <section class="products-section">
@@ -817,78 +815,79 @@
     <div class="divider"></div>
   </div>
 
- <a href="https://naver.me/Gnt6zp3H" class="product-item hot" target="_blank" rel="noopener">
-  <div class="product-thumb"><img src="img/wealth1.jpg" alt="금전수 돈나무 개업화분 선물" loading="lazy"></div>
+  <div class="products-grid">
+<a href="https://naver.me/Gnt6zp3H" class="product-item hot" target="_blank" rel="noopener">
+  <div class="product-thumb"><div class="pick-badge">✦ PICK</div><img src="img/wealth1.jpg" alt="금전수 돈나무 개업화분 선물" loading="lazy"></div>
   <div class="product-body">
-    <div class="pick-badge">✦ 전생시그널 PICK</div>
     <div class="product-tag">BEST · 💰</div>
     <div class="product-name">금전수 돈나무 개업화분 선물</div>
-    <div class="product-desc">거실에 두면 재물이 흐른다</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">110,000원</span><span class="pb-rate">55%↓</span></div><div class="pb-now">48,800원</div><div class="pb-trust">⭐<b>4.9</b> · 리뷰 <b>663</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">449명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">110,000원</span><span class="pb-rate">55%↓</span></div><div class="pb-now">48,800원</div>
+    <div class="pb-trust">⭐4.9 · 리뷰 663</div>
+    <div class="product-badge">🔥 449명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/5kPghY01" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/5kPghY01" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/wealth2.jpg" alt="담결 달항아리 액자 그림" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">인기 · 💰</div>
     <div class="product-name">담결 달항아리 액자 그림</div>
-    <div class="product-desc">돈이 들어오는 풍수 배치</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">79,000원</span><span class="pb-rate">15%↓</span></div><div class="pb-now">67,000원</div><div class="pb-trust">⭐<b>4.94</b> · 리뷰 <b>615</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">385명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">79,000원</span><span class="pb-rate">15%↓</span></div><div class="pb-now">67,000원</div>
+    <div class="pb-trust">⭐4.94 · 리뷰 615</div>
+    <div class="product-badge">🔥 385명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/GsBZeUlD" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/GsBZeUlD" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/wealth3.png" alt="해바라기액자 재물을 부르는" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">인기 · 💰</div>
     <div class="product-name">해바라기액자 재물을 부르는</div>
-    <div class="product-desc">공간에 재물운을 채우다</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">375,000원</span><span class="pb-rate">40%↓</span></div><div class="pb-now">225,000원</div><div class="pb-trust">⭐<b>4.92</b> · 리뷰 <b>321</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">483명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">375,000원</span><span class="pb-rate">40%↓</span></div><div class="pb-now">225,000원</div>
+    <div class="pb-trust">⭐4.92 · 리뷰 321</div>
+    <div class="product-badge">🔥 483명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/Ix0aLo7j" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/Ix0aLo7j" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/wealth4.jpg" alt="돈벼락폭포 캔버스 10호 대형" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">NEW · 💰</div>
     <div class="product-name">돈벼락폭포 캔버스 10호 대형</div>
-    <div class="product-desc">거실에 두면 재물이 흐른다</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">56,200원</span><span class="pb-rate">23%↓</span></div><div class="pb-now">43,000원</div><div class="pb-trust">⭐<b>4.67</b> · 리뷰 <b>315</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">265명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">56,200원</span><span class="pb-rate">23%↓</span></div><div class="pb-now">43,000원</div>
+    <div class="pb-trust">⭐4.67 · 리뷰 315</div>
+    <div class="product-badge">🔥 265명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/FdqOjb4f" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/FdqOjb4f" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/wealth5.jpg" alt="풍수에 좋은 거실 예쁜그림" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">NEW · 💰</div>
     <div class="product-name">풍수에 좋은 거실 예쁜그림</div>
-    <div class="product-desc">돈이 들어오는 풍수 배치</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">509,000원</span><span class="pb-rate">29%↓</span></div><div class="pb-now">359,000원</div><div class="pb-trust">⭐<b>4.71</b> · 리뷰 <b>182</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">496명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">509,000원</span><span class="pb-rate">29%↓</span></div><div class="pb-now">359,000원</div>
+    <div class="pb-trust">⭐4.71 · 리뷰 182</div>
+    <div class="product-badge">🔥 496명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/FRo6VK9p" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/FRo6VK9p" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/wealth6.jpg" alt="풍수지리에 좋은 금전 코끼리" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">NEW · 💰</div>
     <div class="product-name">풍수지리에 좋은 금전 코끼리</div>
-    <div class="product-desc">공간에 재물운을 채우다</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">580,000원</span><span class="pb-rate">99%↓</span></div><div class="pb-now">4,900원</div><div class="pb-trust">⭐<b>4.69</b> · 리뷰 <b>156</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">298명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">580,000원</span><span class="pb-rate">99%↓</span></div><div class="pb-now">4,900원</div>
+    <div class="pb-trust">⭐4.69 · 리뷰 156</div>
+    <div class="product-badge">🔥 298명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
+  </div>
 </section>
 
 <section class="products-section">
@@ -899,78 +898,79 @@
     <div class="divider"></div>
   </div>
 
- <a href="https://naver.me/GB3xqimd" class="product-item hot" target="_blank" rel="noopener">
-  <div class="product-thumb"><img src="img/love1.jpg" alt="절대콜라겐 프랑스 저분자 피쉬" loading="lazy"></div>
+  <div class="products-grid">
+<a href="https://naver.me/GB3xqimd" class="product-item hot" target="_blank" rel="noopener">
+  <div class="product-thumb"><div class="pick-badge">✦ PICK</div><img src="img/love1.jpg" alt="절대콜라겐 프랑스 저분자 피쉬" loading="lazy"></div>
   <div class="product-body">
-    <div class="pick-badge">✦ 전생시그널 PICK</div>
     <div class="product-tag">BEST · 💗</div>
     <div class="product-name">절대콜라겐 프랑스 저분자 피쉬</div>
-    <div class="product-desc">인상이 곧 인연이다</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">27,500원</span><span class="pb-rate">31%↓</span></div><div class="pb-now">18,900원</div><div class="pb-trust">⭐<b>4.72</b> · 리뷰 <b>206,178</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">384명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">27,500원</span><span class="pb-rate">31%↓</span></div><div class="pb-now">18,900원</div>
+    <div class="pb-trust">⭐4.72 · 리뷰 206,178</div>
+    <div class="product-badge">🔥 384명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/FUQOG0Ux" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/FUQOG0Ux" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/love2.jpg" alt="아이랩 멜라키 기미잡티" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">인기 · 💗</div>
     <div class="product-name">아이랩 멜라키 기미잡티</div>
-    <div class="product-desc">오늘의 나를 가꾸는 습관</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">50,000원</span><span class="pb-rate">41%↓</span></div><div class="pb-now">29,300원</div><div class="pb-trust">⭐<b>4.62</b> · 리뷰 <b>58,602</b></div><div class="pb-sub">공식스토어 · N페이 적립</div></div>
-    <div class="product-badge">176명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">50,000원</span><span class="pb-rate">41%↓</span></div><div class="pb-now">29,300원</div>
+    <div class="pb-trust">⭐4.62 · 리뷰 58,602</div>
+    <div class="product-badge">🔥 176명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/xF4tXmdG" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/xF4tXmdG" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/love3.jpg" alt="메이베나 마스크팩 뽑아쓰는" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">인기 · 💗</div>
     <div class="product-name">메이베나 마스크팩 뽑아쓰는</div>
-    <div class="product-desc">리뷰로 검증된 뷰티템</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">28,000원</span><span class="pb-rate">32%↓</span></div><div class="pb-now">18,800원</div><div class="pb-trust">⭐<b>4.72</b> · 리뷰 <b>58,259</b></div><div class="pb-sub">공식스토어 · N페이 적립</div></div>
-    <div class="product-badge">337명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">28,000원</span><span class="pb-rate">32%↓</span></div><div class="pb-now">18,800원</div>
+    <div class="pb-trust">⭐4.72 · 리뷰 58,259</div>
+    <div class="product-badge">🔥 337명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/54KuMDPD" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/54KuMDPD" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/love4.png" alt="뭉클 프리지아 니치 향수 명품" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">NEW · 💗</div>
     <div class="product-name">뭉클 프리지아 니치 향수 명품</div>
-    <div class="product-desc">인상이 곧 인연이다</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">5,830원</span><span class="pb-rate">33%↓</span></div><div class="pb-now">3,900원</div><div class="pb-trust">⭐<b>4.77</b> · 리뷰 <b>30,434</b></div><div class="pb-sub">공식스토어 · N페이 적립</div></div>
-    <div class="product-badge">92명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">5,830원</span><span class="pb-rate">33%↓</span></div><div class="pb-now">3,900원</div>
+    <div class="pb-trust">⭐4.77 · 리뷰 30,434</div>
+    <div class="product-badge">🔥 92명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/xm0Uk22T" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/xm0Uk22T" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/love5.png" alt="안나홀츠 순면 에센스 젤 수분" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">NEW · 💗</div>
     <div class="product-name">안나홀츠 순면 에센스 젤 수분</div>
-    <div class="product-desc">오늘의 나를 가꾸는 습관</div>
-    <div class="pb"><div class="pb-now">44,900원</div><div class="pb-trust">⭐<b>4.76</b> · 리뷰 <b>27,961</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">423명이 구매중</div>
+    <div class="pb-now">44,900원</div>
+    <div class="pb-trust">⭐4.76 · 리뷰 27,961</div>
+    <div class="product-badge">🔥 423명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
 
- <a href="https://naver.me/574THCIn" class="product-item" target="_blank" rel="noopener">
+<a href="https://naver.me/574THCIn" class="product-item" target="_blank" rel="noopener">
   <div class="product-thumb"><img src="img/love6.jpg" alt="맑을담 히알루론산 1% 원액" loading="lazy"></div>
   <div class="product-body">
     <div class="product-tag">NEW · 💗</div>
     <div class="product-name">맑을담 히알루론산 1% 원액</div>
-    <div class="product-desc">리뷰로 검증된 뷰티템</div>
-    <div class="pb"><div class="pb-top"><span class="pb-was">5,500원</span><span class="pb-rate">36%↓</span></div><div class="pb-now">3,500원</div><div class="pb-trust">⭐<b>4.73</b> · 리뷰 <b>26,104</b></div><div class="pb-sub">N페이 적립</div></div>
-    <div class="product-badge">222명이 구매중</div>
+    <div class="pb-top"><span class="pb-was">5,500원</span><span class="pb-rate">36%↓</span></div><div class="pb-now">3,500원</div>
+    <div class="pb-trust">⭐4.73 · 리뷰 26,104</div>
+    <div class="product-badge">🔥 222명 구매중</div>
   </div>
-  <div class="product-cta">N 쇼핑</div>
+  <div class="product-cta">N 쇼핑에서 보기</div>
 </a>
+  </div>
   <div class="naver-notice">
     본 페이지의 상품 링크는 네이버 쇼핑 파트너 링크로,<br>
     구매 시 일정 수수료가 발생할 수 있습니다.
