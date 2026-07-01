@@ -533,6 +533,7 @@
 
 
 
+
 /* JEON_STYLE_START */
   /* 2열 세로형 상품 카드 (이미지 위 · 내용 센터) */
   .products-grid { display:grid; grid-template-columns:1fr 1fr; gap:11px; }
@@ -552,6 +553,13 @@
   .pb-trust { margin-top:6px; font-size:11px; color:var(--text); white-space:nowrap; }
   .product-badge { display:inline-block; margin-top:7px; font-size:10.5px; color:#E8B4B8; font-weight:600; }
   .product-cta { display:block !important; background:var(--naver); color:#fff; font-weight:700; font-size:12px; text-align:center; padding:10px; letter-spacing:.3px; }
+  /* 아이덴티티→상품 브릿지 */
+  .bridge { text-align:center; padding:34px 22px 4px; position:relative; z-index:1; }
+  .bridge-line { font-family:'Noto Serif KR',serif; font-size:19px; font-weight:800; line-height:1.5; color:var(--text); }
+  .bridge-line em { font-style:normal; color:var(--gold-light); }
+  .bridge-sub { margin-top:11px; font-size:13px; line-height:1.75; color:var(--text-dim); }
+  .bridge-sub b { color:var(--gold-light); font-weight:700; }
+  .bridge-arrow { margin-top:14px; font-size:20px; color:var(--gold); }
   /* 긴급 카운트다운 바 */
   .timer-bar { position:relative; z-index:1; background:linear-gradient(90deg, rgba(201,168,76,.18), rgba(139,105,20,.1)); border-top:1px solid rgba(201,168,76,.3); border-bottom:1px solid rgba(201,168,76,.3); padding:12px 20px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:14px; font-weight:700; color:var(--text); }
   .timer-bar .clock { font-variant-numeric:tabular-nums; font-weight:800; color:var(--gold-light); background:rgba(0,0,0,.3); padding:2px 8px; border-radius:6px; border:1px solid rgba(201,168,76,.35); letter-spacing:.5px; }
@@ -655,6 +663,8 @@
 </section>
 
 <!-- PRODUCTS_START -->
+<div class="bridge"><div class="bridge-line">당신의 <em>전생</em>이 말하는 운,<br>알기만 해선 바뀌지 않습니다</div><div class="bridge-sub">오늘부터 그 운을 끌어올릴 개운템,<br><b>전생시그널이 직접 골랐습니다</b></div><div class="bridge-arrow">▾</div></div>
+
 <div class="proofbar"><div class="pf"><b>680,125+</b><span>검증된 누적 리뷰</span></div><div class="pf"><b>⭐4.81</b><span>평균 평점</span></div><div class="pf"><b>24종</b><span>엄선한 개운·재물템</span></div></div>
 
 <section class="products-section">
