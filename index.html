@@ -527,6 +527,7 @@
 
 
 
+
 /* JEON_STYLE_START */
   /* 2열 세로형 상품 카드 (이미지 위 · 내용 센터) */
   .products-grid { display:grid; grid-template-columns:1fr 1fr; gap:11px; }
@@ -545,6 +546,9 @@
   .pb-trust { margin-top:6px; font-size:11px; color:var(--text); white-space:nowrap; }
   .product-badge { display:inline-block; margin-top:7px; font-size:10.5px; color:#E8B4B8; font-weight:600; }
   .product-cta { display:block !important; background:var(--naver); color:#fff; font-weight:700; font-size:12px; text-align:center; padding:10px; letter-spacing:.3px; }
+  /* 긴급 카운트다운 바 */
+  .timer-bar { position:relative; z-index:1; background:linear-gradient(90deg, rgba(201,168,76,.18), rgba(139,105,20,.1)); border-top:1px solid rgba(201,168,76,.3); border-bottom:1px solid rgba(201,168,76,.3); padding:12px 20px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:14px; font-weight:700; color:var(--text); }
+  .timer-bar .clock { font-variant-numeric:tabular-nums; font-weight:800; color:var(--gold-light); background:rgba(0,0,0,.3); padding:2px 8px; border-radius:6px; border:1px solid rgba(201,168,76,.35); letter-spacing:.5px; }
   /* 가독성 · 여백 압축 */
   .section-title { font-size:20px !important; }
   .zodiac-name { font-size:11.5px !important; }
@@ -577,6 +581,11 @@
 <!-- 안내 배너 -->
 <div class="notice-bar">
   🛒 <span>개운 아이템</span>은 네이버 쇼핑 파트너 링크로 연결됩니다
+</div>
+
+<!-- 긴급 카운트다운 (넣다세일 마감) -->
+<div class="timer-bar" id="timerBar">
+  ⏳ 이번 특가 마감까지 <span class="clock" id="clock">00:00:00</span>
 </div>
 
 <!-- 띠 선택 -->
@@ -1053,6 +1062,22 @@
 </div>
 
 <script>
+  /* 카운트다운 (넣다세일 종료 2026-07-05 23:59 KST) — 지나면 배너 자동 숨김 */
+  const SALE_END = new Date("2026-07-05T23:59:59+09:00");
+  const clockEl = document.getElementById("clock");
+  const timerBar = document.getElementById("timerBar");
+  function tick() {
+    const now = new Date();
+    let d = Math.floor((SALE_END - now) / 1000);
+    if (d <= 0) { if (timerBar) timerBar.style.display = "none"; return; }
+    const days = Math.floor(d / 86400);
+    const h = String(Math.floor((d % 86400) / 3600)).padStart(2, "0");
+    const m = String(Math.floor((d % 3600) / 60)).padStart(2, "0");
+    const s = String(d % 60).padStart(2, "0");
+    clockEl.textContent = (days > 0 ? days + "일 " : "") + `${h}:${m}:${s}`;
+  }
+  tick(); setInterval(tick, 1000);
+
   const links = [
     "https://naver.me/xktAkcLO",
     "https://naver.me/xVRTsaLy",
