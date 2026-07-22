@@ -577,6 +577,69 @@
   .proofbar .pf b { display:block; color:var(--gold-light); font-size:21px; font-weight:800; font-family:'Noto Serif KR',serif; line-height:1.2; }
   .proofbar .pf span { font-size:11px; color:var(--text-dim); }
 /* JEON_STYLE_END */
+
+/* JEON_LOTTIE_START — 로티 스킬 슬롯 구현(자기완결, 외부 CDN 없음) */
+  /* 슬롯1 — 히어로 '전생' 골드 샤인 (등장 pop + 1회 sweep 후 정지) */
+  .header-title em {
+    display: inline-block;
+    background: linear-gradient(115deg, var(--gold-dark) 0%, var(--gold) 30%, var(--gold-light) 46%, #FFF6DC 50%, var(--gold-light) 54%, var(--gold) 70%, var(--gold-dark) 100%);
+    background-size: 260% 100%;
+    background-position: 130% 0;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: jeonEmPop .55s cubic-bezier(.2,.75,.34,.94) .15s both,
+               jeonEmShine 1.35s cubic-bezier(0,.65,.51,.99) .55s 1 forwards;
+  }
+  @keyframes jeonEmPop { 0%{transform:scale(1)} 45%{transform:scale(1.035)} 100%{transform:scale(1)} }
+  @keyframes jeonEmShine { from{background-position:130% 0} to{background-position:-30% 0} }
+
+  /* 슬롯2 — proofbar count-up (tabular, settle-soft) */
+  .proofbar .pf b { font-variant-numeric: tabular-nums; }
+  .proofbar .cu-prefix { color: var(--gold-light); }
+
+  /* 슬롯3 — 브릿지 화살표 다운 nudge (심리스 루프) */
+  .bridge-arrow { animation: jeonArrowNudge 1.6s ease-in-out infinite; }
+  @keyframes jeonArrowNudge { 0%,100%{transform:translateY(0); opacity:.8} 50%{transform:translateY(5px); opacity:1} }
+
+  /* 슬롯4 — ✦ PICK 뱃지 스파클 pop-in (1회 후 정지) */
+  .pick-badge { animation: jeonPickPop .5s cubic-bezier(.2,.75,.34,.94) .35s both; transform-origin:left center; }
+  @keyframes jeonPickPop { 0%{transform:scale(.6); opacity:0} 60%{transform:scale(1.08); opacity:1} 100%{transform:scale(1); opacity:1} }
+  .pick-badge::after {
+    content:'✦'; position:absolute; top:-6px; right:-3px;
+    font-size:11px; color:var(--gold-light); opacity:0; pointer-events:none;
+    text-shadow:0 0 5px rgba(240,201,107,.7);
+    animation: jeonSparkle 1.1s ease-out .55s 1 forwards;
+  }
+  @keyframes jeonSparkle {
+    0%{opacity:0; transform:scale(.4) rotate(0deg)}
+    45%{opacity:1; transform:scale(1.15) rotate(15deg)}
+    100%{opacity:0; transform:scale(.7) rotate(25deg)}
+  }
+
+  /* 슬롯5 — 플로팅 CTA 네이버그린 펄스 링 (float-cta는 기존 box-shadow pulse 유지) */
+  .float-cta { position: relative; }
+  .float-cta::before {
+    content:''; position:absolute; inset:0; border-radius:14px;
+    box-shadow:0 0 0 0 rgba(3,199,90,.45);
+    animation: jeonCtaRing 2.5s ease-out infinite;
+    pointer-events:none;
+  }
+  @keyframes jeonCtaRing {
+    0%{box-shadow:0 0 0 0 rgba(3,199,90,.45)}
+    70%{box-shadow:0 0 0 14px rgba(3,199,90,0)}
+    100%{box-shadow:0 0 0 0 rgba(3,199,90,0)}
+  }
+
+  /* 감속 옵션 — 루프/샤인 정지, 정착 상태로 폴백 */
+  @media (prefers-reduced-motion: reduce) {
+    .header-title em { animation: none; background-position: 0 0; }
+    .bridge-arrow { animation: none; }
+    .pick-badge { animation: none; }
+    .pick-badge::after { animation: none; opacity: 0; }
+    .float-cta { animation: none; }
+    .float-cta::before { animation: none; box-shadow: none; }
+  }
+/* JEON_LOTTIE_END */
 </style>
 </head>
 <body>
@@ -657,7 +720,7 @@
 <!-- PRODUCTS_START -->
 <div class="bridge"><div class="bridge-line">당신의 <em>전생</em>이 말하는 운,<br>알기만 해선 바뀌지 않습니다</div><div class="bridge-sub">오늘부터 그 운을 끌어올릴 개운템,<br><b>전생시그널이 직접 골랐습니다</b></div><div class="bridge-arrow">▾</div></div>
 
-<div class="proofbar"><div class="pf"><b>680,125+</b><span>검증된 누적 리뷰</span></div><div class="pf"><b>⭐4.81</b><span>평균 평점</span></div><div class="pf"><b>24종</b><span>엄선한 개운·재물템</span></div></div>
+<div class="proofbar"><div class="pf"><b><span class="cu" data-to="680125" data-dec="0" data-suffix="+">0</span></b><span>검증된 누적 리뷰</span></div><div class="pf"><b><span class="cu-prefix">⭐</span><span class="cu" data-to="4.81" data-dec="2">0</span></b><span>평균 평점</span></div><div class="pf"><b><span class="cu" data-to="24" data-dec="0" data-suffix="종">0</span></b><span>엄선한 개운·재물템</span></div></div>
 
 <div class="timer-bar" id="timerBar">⏳ 이번 특가 마감까지 <span class="clock" id="clock">00:00:00</span></div>
 
@@ -1122,6 +1185,41 @@
   ];
   const random = links[Math.floor(Math.random() * links.length)];
   document.querySelector(".float-cta").href = random;
+
+  /* 슬롯2 — proofbar count-up (좌→우 stagger, settle-soft, 화면 진입 시 1회) */
+  (function () {
+    var els = document.querySelectorAll(".proofbar .cu");
+    if (!els.length) return;
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function fmt(v, dec) {
+      return dec > 0 ? v.toFixed(dec) : Math.round(v).toLocaleString("en-US");
+    }
+    function run(el, delay) {
+      var to = parseFloat(el.dataset.to);
+      var dec = parseInt(el.dataset.dec || "0", 10);
+      var suf = el.dataset.suffix || "";
+      if (reduce) { el.textContent = fmt(to, dec) + suf; return; }
+      var dur = 1300, start = null;
+      function step(ts) {
+        if (start === null) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var e = 1 - Math.pow(1 - p, 3); /* settle-soft ease-out, 바운스 없음 */
+        el.textContent = fmt(to * e, dec) + (p >= 1 ? suf : "");
+        if (p < 1) requestAnimationFrame(step);
+      }
+      setTimeout(function () { requestAnimationFrame(step); }, delay);
+    }
+    function trigger() { els.forEach(function (el, i) { run(el, i * 180); }); }
+    var bar = document.querySelector(".proofbar");
+    if ("IntersectionObserver" in window && bar) {
+      var io = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { trigger(); obs.disconnect(); }
+        });
+      }, { threshold: 0.4 });
+      io.observe(bar);
+    } else { trigger(); }
+  })();
 </script>
 
 </body>
